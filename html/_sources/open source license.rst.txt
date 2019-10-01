@@ -1,0 +1,6 @@
+open source license
+====================
+
+.. csv-table::
+    :file: licenses_infomation.csv
+    :header-rows: 1

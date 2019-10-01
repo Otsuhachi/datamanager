@@ -1,0 +1,7 @@
+datamanager
+===========
+
+.. toctree::
+   :maxdepth: 4
+
+   datamanager

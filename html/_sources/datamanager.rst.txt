@@ -1,0 +1,7 @@
+datamanager module
+==================
+
+.. automodule:: datamanager
+   :members:
+   :undoc-members:
+   :show-inheritance:

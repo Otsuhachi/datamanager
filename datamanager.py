@@ -322,3 +322,11 @@ def get_extension(file):
     if len_ == 1 or not split_file_name[-1]:
         return None
     return split_file_name[-1]
+
+
+def main():
+    print("This script is not main module.")
+
+
+if __name__ == '__main__':
+    main()
