@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="open source license.html" />
+    <link rel="next" title="open source license" href="open source license.html" />
     <link rel="prev" title="Welcome to Data Manager’s documentation!" href="index.html" /> 
 </head>
 
@@ -83,6 +83,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">datamanager module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open source license.html">open source license</a></li>
 </ul>
 
             
@@ -317,6 +318,23 @@ This is if there is no key in the management file, the method because it can be 
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="datamanager.DataManager.show">
+<code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamanager.DataManager.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output saved data correspondence table.</p>
+<dl>
+<dt>Exapmles:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">DataManager</span><span class="p">(</span><span class="s1">&#39;test.pkl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dm</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example1</span><span class="o">=</span><span class="s1">&#39;ex1&#39;</span><span class="p">,</span> <span class="n">example2</span><span class="o">=</span><span class="s1">&#39;ex2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="go">example1: ex1</span>
+<span class="go">example2: ex2</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -329,7 +347,7 @@ This is if there is no key in the management file, the method because it can be 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="open source license.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="open source license.html" class="btn btn-neutral float-right" title="open source license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Data Manager’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
