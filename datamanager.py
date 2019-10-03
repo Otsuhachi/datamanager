@@ -9,6 +9,20 @@ class DataManager:
     def __exit__(self, ex_type, message, traceback):
         self._update()
 
+    def __getitem__(self, item):
+        """This method is equivalent to load(key, strict = True).
+
+        Args:
+            item (str): The key of the object to read.
+
+        Raises:
+            ValueError: Thrown when strict is true and the key does not exist.
+
+        Returns:
+            object: The saved object.
+        """
+        return self.load(item, True)
+
     def __init__(self, file_name, *path, create_newly=True):
         """To assist in the data management of the object by the pickle.
 
@@ -32,6 +46,15 @@ class DataManager:
             [2, 3]
         """
         self._setup(file_name, path, create_newly)
+
+    def __setitem__(self, key, value):
+        """This method is equivalent to rewrite(key, value).
+
+        Args:
+            key (str): The key to be rewritten.
+            value (object): The object corresponding to that key.
+        """
+        self.rewrite(key, value)
 
     def _get_generator(self):
         """Acquires a generator that retrieves data stored in a management file one by one.
