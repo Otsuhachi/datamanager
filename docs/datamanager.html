@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>datamanager module &mdash; Data Manager 1.0.1 documentation</title>
+  <title>datamanager module &mdash; Data Manager 1.1.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="open source license" href="open source license.html" />
+    <link rel="next" title="Open source license information." href="open source license.html" />
     <link rel="prev" title="Welcome to Data Manager’s documentation!" href="index.html" /> 
 </head>
 
@@ -83,7 +83,10 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">datamanager module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open source license.html">open source license</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Informations:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="open source license.html">Open source license information.</a></li>
 </ul>
 
             
@@ -191,16 +194,33 @@ If the management file does not exist, this option does not matter.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
+<p>The results of Case 1 and Case 2 is equal.</p>
+<dl>
+<dt>Case1:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">DataManager</span><span class="p">(</span><span class="s1">&#39;test.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;pkl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dm</span><span class="p">:</span>  <span class="c1"># &quot;./Data/pkl/test.pkl&quot; is created.</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">exsapmle1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">exsapmle2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;exsample1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">example2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">))</span>
 <span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span><span class="s1">&#39;exsample1&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;exsample2&#39;</span><span class="p">,</span> <span class="s1">&#39;exsample1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;example2&#39;</span><span class="p">,</span> <span class="s1">&#39;example1&#39;</span><span class="p">))</span>
 <span class="go">[2, 3]</span>
 </pre></div>
 </div>
+</dd>
+<dt>Case2:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dm</span> <span class="o">=</span> <span class="n">DataManager</span><span class="p">(</span><span class="s1">&#39;test.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="s1">&#39;pkl&#39;</span><span class="p">)</span>  <span class="c1"># &quot;./Data/pkl/test.pkl&quot; is created.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dm</span><span class="p">[</span><span class="s1">&#39;example1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dm</span><span class="p">[</span><span class="s1">&#39;example2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="s1">&#39;example1&#39;</span><span class="p">])</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dm</span><span class="p">[</span><span class="s1">&#39;example1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;example2&#39;</span><span class="p">,</span> <span class="s1">&#39;example1&#39;</span><span class="p">))</span>
+<span class="go">[2, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dm</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -340,7 +360,7 @@ This is if there is no key in the management file, the method because it can be 
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">DataManager</span><span class="p">(</span><span class="s1">&#39;test.pkl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dm</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example1</span><span class="o">=</span><span class="s2">&quot;ex1&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">,</span> <span class="s1">&#39;changed&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;exapmle1&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">))</span>
 <span class="go">changed</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span><span class="s1">&#39;example2&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;example2&#39;</span><span class="p">))</span>
@@ -356,8 +376,8 @@ This is if there is no key in the management file, the method because it can be 
 <dt id="datamanager.DataManager.show">
 <code class="sig-name descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamanager.DataManager.show" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output saved data correspondence table.</p>
-<dl>
-<dt>Exapmles:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datamanager</span> <span class="k">import</span> <span class="n">DataManager</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">DataManager</span><span class="p">(</span><span class="s1">&#39;test.pkl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dm</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example1</span><span class="o">=</span><span class="s1">&#39;ex1&#39;</span><span class="p">,</span> <span class="n">example2</span><span class="o">=</span><span class="s1">&#39;ex2&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">dm</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -365,11 +385,39 @@ This is if there is no key in the management file, the method because it can be 
 <span class="go">example2: ex2</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamanager.DataManager.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamanager.DataManager.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>To maintain the integrity of the management file, and update.</p>
+<p>This method is called automatically and should not be used.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="datamanager.get_extension">
+<code class="sig-prename descclassname">datamanager.</code><code class="sig-name descname">get_extension</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="headerlink" href="#datamanager.get_extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the extension from a string or path object.</p>
+<p>If the extension cannot be confirmed, None is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em><em> or </em><em>Path</em>) – String or path object for the file name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Extension or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
 </dd>
 </dl>
 </dd></dl>
 
-</dd></dl>
+<dl class="function">
+<dt id="datamanager.main">
+<code class="sig-prename descclassname">datamanager.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamanager.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -381,7 +429,7 @@ This is if there is no key in the management file, the method because it can be 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="open source license.html" class="btn btn-neutral float-right" title="open source license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="open source license.html" class="btn btn-neutral float-right" title="Open source license information." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Data Manager’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

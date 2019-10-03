@@ -7,7 +7,7 @@ class DataManager:
         return self
 
     def __exit__(self, ex_type, message, traceback):
-        self._update()
+        self.update()
 
     def __getitem__(self, item):
         """This method is equivalent to load(key, strict = True).
@@ -36,14 +36,29 @@ class DataManager:
                 If the management file does not exist, this option does not matter.
 
         Examples:
-            >>> from datamanager import DataManager
-            >>> with DataManager('test.pkl', 'Data', 'pkl') as dm:  # "./Data/pkl/test.pkl" is created.
-            >>>     dm.add(exsapmle1=1, exsapmle2=2)
-            >>>     dm.load('exsample1')
-            1
-            >>>     dm.rewrite('exsample1', 3)
-            >>>     dm.loads('exsample2', 'exsample1')
-            [2, 3]
+            The results of Case 1 and Case 2 is equal.
+
+            Case1:
+                >>> from datamanager import DataManager
+                >>> with DataManager('test.pkl', 'Data', 'pkl') as dm:  # "./Data/pkl/test.pkl" is created.
+                >>>     dm.add(example1=1, example2=2)
+                >>>     print(dm.load('example1'))
+                1
+                >>>     dm.rewrite('example1', 3)
+                >>>     print(dm.loads('example2', 'example1'))
+                [2, 3]
+
+            Case2:
+                >>> from datamanager import DataManager
+                >>> dm = DataManager('test.pkl', 'Data', 'pkl')  # "./Data/pkl/test.pkl" is created.
+                >>> dm['example1'] = 1
+                >>> dm['example2'] = 2
+                >>> print(dm['example1'])
+                1
+                >>> dm['example1'] = 3
+                >>> print(dm.loads('example2', 'example1'))
+                [2, 3]
+                >>> dm.update()
         """
         self._setup(file_name, path, create_newly)
 
@@ -93,12 +108,12 @@ class DataManager:
             file_name (str): The file name.
                 Please refer to the __init__ method for more information.
         """
-        exp = get_extension(file_name)
-        if exp is None:
-            exp = 'pkl'
+        ext = get_extension(file_name)
+        if ext is None:
+            ext = 'pkl'
             if file_name[-1] != '.':
-                exp = f'.{exp}'
-            file_name += exp
+                ext = f'.{ext}'
+            file_name += ext
         self.__file_name = file_name
         self.__file = self.__path / self.__file_name
 
@@ -121,7 +136,7 @@ class DataManager:
         else:
             keys = []
         self.__keys = keys
-        self._update()
+        self.update()
 
     def _setup_path(self, path):
         """Set the save path of the management file.
@@ -144,21 +159,6 @@ class DataManager:
         except Exception as e:
             raise e
         self.__path = path_
-
-    def _update(self):
-        """To maintain the integrity of the management file, and update.
-
-        This method is called automatically and should not be used.
-        """
-        tmp = self.__path / 'tmp.pkl'
-        with open(tmp, 'wb') as f:
-            for dict_ in self._get_generator():
-                for key in dict_:
-                    if key in self.__keys:
-                        f.write(pickle.dumps(dict_))
-        with open(tmp, 'rb') as i, open(self.__file, 'wb') as o:
-            o.write(i.read())
-        tmp.unlink()
 
     def add(self, **kwargs):
         """Save the objects in the management file.
@@ -280,7 +280,7 @@ class DataManager:
         if key in self.__keys:
             index = self.__keys.index(key)
             del self.__keys[index]
-            self._update()
+            self.update()
 
     def rewrite(self, key, value, *, should_add=True):
         """Already it overwrites the data of the key that exists.
@@ -297,7 +297,7 @@ class DataManager:
             >>> with DataManager('test.pkl') as dm:
             >>>     dm.add(example1="ex1")
             >>>     dm.rewrite('example1', 'changed')
-            >>>     print(dm.load('exapmle1'))
+            >>>     print(dm.load('example1'))
             changed
             >>>     dm.rewrite('example2', 1)
             >>>     print(dm.load('example2'))
@@ -315,7 +315,7 @@ class DataManager:
     def show(self):
         """Output saved data correspondence table.
 
-        Exapmles:
+        Examples:
             >>> from datamanager import DataManager
             >>> with DataManager('test.pkl') as dm:
             >>>     dm.add(example1='ex1', example2='ex2')
@@ -327,6 +327,21 @@ class DataManager:
             for d in obj.items():
                 key, value = d
                 print(f"{key}: {value}")
+
+    def update(self):
+        """To maintain the integrity of the management file, and update.
+
+        This method is called automatically and should not be used.
+        """
+        tmp = self.__path / 'tmp.pkl'
+        with open(tmp, 'wb') as f:
+            for dict_ in self._get_generator():
+                for key in dict_:
+                    if key in self.__keys:
+                        f.write(pickle.dumps(dict_))
+        with open(tmp, 'rb') as i, open(self.__file, 'wb') as o:
+            o.write(i.read())
+        tmp.unlink()
 
 
 def get_extension(file):

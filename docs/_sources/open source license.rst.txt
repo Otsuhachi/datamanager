@@ -1,6 +1,5 @@
-open source license
-====================
-
+Open source license information.
+================================
 .. csv-table::
     :file: licenses_infomation.csv
     :header-rows: 1
